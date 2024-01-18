@@ -2,8 +2,10 @@
 
 import MyForm from "@/components/logincomponents/loginForm";
 
+import { register } from "@/api/registeruser";
 
-const Home = () => {
+const Home = async () => {
+  
   return (
     <div>
       <h1>Welcome to My Next.js App</h1>

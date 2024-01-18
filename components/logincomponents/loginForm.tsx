@@ -1,5 +1,6 @@
 // components/MyForm.js
 "use client";
+import { register } from '@/api/registeruser';
 import { useState } from 'react';
 
 const MyForm = () => {
@@ -15,9 +16,13 @@ const MyForm = () => {
     });
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
-    // Handle form submission logic here
+    
+    // Pass formData to the register function
+    const res = await register();
+    console.log(res);
+
     console.log('Form submitted:', formData);
   };
 
