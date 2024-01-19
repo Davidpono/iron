@@ -3,7 +3,7 @@
 import { register } from "@/api/registeruser";
 import { useState } from "react";
 import axios from 'axios';
-import { PageProps } from '../../.next/types/app/layout';
+
 import Link from "next/link";
 const url = 'https://discoveri.azurewebsites.net/api/register/';
 

@@ -1,7 +1,7 @@
 import { fetchindividualWorkout } from '@/api/getindividualworkout';
 import { fetchDataWorkouts } from '@/api/getworkouts';
-import ShowallWorkouts from '@/components/allWorkouts';
-import IndividualWorkouts from '@/components/individualWorkouts';
+import ShowallWorkouts from '@/components2/allWorkouts';
+import IndividualWorkouts from '@/components2/individualWorkouts';
 import { AllWorkouts } from "@/types";
 import Image from 'next/image';
 

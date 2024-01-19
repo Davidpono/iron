@@ -1,9 +1,9 @@
 // pages/index.js
 
-import MyForm from "@/components/logincomponents/loginForm";
+import MyForm from "@/components2/logincomponents/loginForm";
 
 import { register } from "@/api/registeruser";
-import Login from "@/components/logincomponents/actualLoginForm";
+import Login from "@/components2/logincomponents/actualLoginForm";
 
 const Home = async () => {
   //const res = await register();

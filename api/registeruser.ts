@@ -25,13 +25,14 @@ export async function register(data: any) {
       const insertedId = response.data.inserted_id;
       if (insertedId) {
         console.log('Inserted document ID:', insertedId);
+        return insertedId;
       }
 
       // Redirect the user or handle success as needed
       // Assuming there's a function to handle success, replace the line below accordingly
       handleSuccess();
 
-      return;
+      return insertedId;
     } catch (error:any) {
       // Handle connection errors, timeouts, or other request-related issues
       console.error(`An error occurred during registration request (Attempt ${attempt}):`, error);

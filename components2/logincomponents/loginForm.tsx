@@ -2,12 +2,16 @@
 "use client";
 import { register } from "@/api/registeruser";
 import { useState } from "react";
-import axios from 'axios';
-import { PageProps } from '../../.next/types/app/layout';
+import { useRouter } from 'next/navigation';
+
 import Link from "next/link";
+import path from "path";
+import { redirect } from "next/navigation";
+
 const url = 'https://discoveri.azurewebsites.net/api/register/';
 
 const Register = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,42 +25,45 @@ const Register = () => {
     });
   };
 
+  
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-  
+    
     try {
-      // Axios POST request
-      /*const axiosRes = await axios.post(url, {
-        email: 'vercenyour_email@example.com',
-        password: 'your_password test vercen8',
-        username: 'your_username vercen88',
-      });
-  
-      console.log('Axios response:', axiosRes.data);
-      */
-      // Pass formData to the register function
+      console.log("weclicked");
       const registrationData = {
         email: formData.email,
         username: formData.name,
-        password: formData.password, // Add password input to your form
-        // Assuming "name" corresponds to the username
+        password: formData.password,
       };
   
-      // Assuming register() is an asynchronous function
-      const registerRes = await register(registrationData);
-      console.log('Registration response:', registerRes);
+      const registerRes: any = await register(registrationData);
   
+      // Wait for 1000 milliseconds (if needed)
+      // await new Promise(resolve => setTimeout(resolve, 1000));
+  
+      console.log('Registration response:', registerRes);
       console.log('Form submitted:', formData);
+      
+      // Redirect to login page with the registration response as a query parameter
+      router.push(`/profile?ref=${registerRes}`);
+    
     } catch (error) {
       console.error('Error during form submission:', error);
     }
+    
+    
+     
+    
+   
+
   };
   
 
   return (
     <div className="flex justify-center">
       
-    <form onSubmit={handleSubmit} className="border-2 border-black rounded-lg lg:w-1/5 md:w-2/3 sm:w-3/5">
+    <form onSubmit={handleSubmit} className=" flex flex-col  border-2 border-black rounded-lg lg:w-1/5 md:w-2/3 sm:w-3/5">
     <div>
     <h1 className="text-3xl font-bold mb-4">Register.</h1>
     </div>
