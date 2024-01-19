@@ -1,16 +1,17 @@
 import axios from 'axios';
 
-export async function register() {
+export async function register(data: any) {
+  console.log(data);
   const url = 'https://discoveri.azurewebsites.net/api/register/';
   const headers = {
     'Content-Type': 'application/json',
   };
 
-  const data = {
+  /*const data = {
     email: 'vercenyour_email@example.com',
-    password: 'your_password test vercen',
-    username: 'your_username vercen',
-  };
+    password: 'your_password test vercen8',
+    username: 'your_username vercen8',
+  };  */
 
   const maxRetries = 3;
   const retryDelay = 2000; // in milliseconds
@@ -18,7 +19,7 @@ export async function register() {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       // Send POST request to the registration API endpoint
-      const response = await axios.post(url, data, { headers });
+      const response = await axios.post(url, data);
       
       // Registration successful, check if inserted_id is present in the response
       const insertedId = response.data.inserted_id;
@@ -49,7 +50,7 @@ export async function register() {
 // Replace this function with the actual function to handle success
 function handleSuccess() {
   // Add your success handling logic here
+  console.log('Registration successful!');
 }
 
-// Call the register function to initiate the registration process
-register();
+

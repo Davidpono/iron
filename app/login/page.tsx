@@ -2,13 +2,16 @@
 
 import MyForm from "@/components/logincomponents/loginForm";
 
+import { register } from "@/api/registeruser";
+import Login from "@/components/logincomponents/actualLoginForm";
+
 const Home = async () => {
   //const res = await register();
   //console.log(res);
   return (
     <div>
    
-      <MyForm />
+      <Login />
     </div>
   );
 };
