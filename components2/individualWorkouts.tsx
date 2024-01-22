@@ -10,18 +10,18 @@ export default async function ShowallWorkouts( id: any) {
         console.log(response)
         if (response && response.Workouts.length > 0) {
           const Workouts: AllWorkouts = response;
-    
+          console.log(Workouts.Workouts[0].sectionsection1[0].workouts[0].sets)
           return (
             <>
               {Workouts.Workouts.map((workout:any) => (
                 <div key={workout._id}>
 
-                  <h1>{workout.Name}</h1>
+                  <h1>workout name: {workout.Name}</h1>
          
-                  <p>{workout.Days}</p>
-                  <p>{workout.Levels}</p>
-                  <p>{workout.Concentration}</p>
-                  <p>{workout.Goals}</p>
+                  <p>Days {workout.Days}</p>
+                  <p>Levels {workout.Levels}</p>
+                  <p>Concentration {workout.Concentration}</p>
+                  <p>Goals {workout.Goals}</p>
                   <Image src={workout.ThumbnailURL} alt={workout.Name} width={200} height={200} />
     
                  
@@ -34,11 +34,11 @@ export default async function ShowallWorkouts( id: any) {
                           {workout[sectionKey].map((section: any) => (
                            
                             <div key={section.dayname}>
-                                <span>workoutname: {section.workoutname}</span>
+                                <span>workoutname: {section.workouts[0].workoutname}</span>
                                 <span>  dayname: {section.dayname}</span>
-                                <span>  sets: {section.sets}</span>
-                                <span>  reps: {section.reps}</span>
-                                <span>  url: {section.url}</span>
+                                <span>  sets: {section.workouts[0].sets}</span>
+                                <span>  reps: {section.workouts[0].reps}</span>
+                                <span>  url: {section.workouts[0].url}</span>
                                 <span>  comments: {section.comments}</span>
                                 
                                 </div>

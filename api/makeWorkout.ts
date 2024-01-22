@@ -34,22 +34,3 @@ export async function postDataToApi(data: any): Promise<string | undefined> {
   }
 }
 
-// Example usage:
-const formData = {
-  // your form data here
-};
-
-postDataToApi(formData)
-  .then((result) => {
-    if (result !== undefined) {
-      // Process the result as needed
-      console.log('API response:', result);
-    } else {
-      // Handle the case where the request failed
-      console.error('API request failed.');
-    }
-  })
-  .catch((error) => {
-    // Handle unexpected errors
-    console.error('An unexpected error occurred:', error);
-  });

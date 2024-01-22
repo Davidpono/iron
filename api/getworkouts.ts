@@ -3,10 +3,10 @@ import { AllWorkouts } from "@/types";
 export async function fetchDataWorkouts(): Promise<AllWorkouts> {
   const baseUrl = 'https://discoveri.azurewebsites.net/api/workouts/';
   const queryParams = {
-    Days: '3',
+    Days: '5',
     Levels: 'Beginner',
-    Concentration: 'Legs',
-    Goals: 'Bodybuilding'
+    Concentration: 'Bodybuilding',
+    Goals: 'Legs'
   };
 
   // Constructing the full URL
