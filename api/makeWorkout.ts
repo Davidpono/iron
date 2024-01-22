@@ -19,7 +19,7 @@ export async function postDataToApi(data: any): Promise<string | undefined> {
       console.error('POST request failed with status:', response.status);
       return undefined;
     }
-  } catch (error: AxiosError) {
+  } catch (error: any) {
     // Handle connection errors, timeouts, or other request-related issues
     console.error('An error occurred during the POST request:', error.message);
     console.log('Response content:', error.response?.data);
