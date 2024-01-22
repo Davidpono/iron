@@ -1,90 +1,242 @@
 "use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, useFieldArray } from "react-hook-form";
-import * as z from "zod";
 
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { postDataToApi } from '@/api/makeWorkout';
+import React, { useState, ChangeEvent } from 'react';
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-});
-
+type Section = {
+  dayname: string;
+  subSections: {
+    workoutname: string;
+    reps: string;
+    sets: string;
+    url: string;
+    comments:string;
+    intensity:string,
+    days: string,
+  }[];
+};
+type Details = {
+  splitnamename: string;
+  thumbnailURL: string;
+  days: string;
+  levels: string;
+  goals: string;
+  conentration: string;
+};
 export function ProfileForm() {
-  const form = useForm({
-    resolver: zodResolver(formSchema),
+  const [formSections, setFormSections] = useState<Section[]>([{ dayname: '', subSections: [{ reps: '', sets: '', workoutname: '', url: '', comments: '', intensity: '', days: '' }] }]);
+  const [formDetails, setFormDetails] = useState<Details>({
+    splitnamename: '',
+    thumbnailURL: '',
+    days: '',
+    levels: '',
+    goals: '',
+    concentration: '',
   });
 
-  const { control, handleSubmit } = form;
-  const { fields, append } = useFieldArray({
-    control,
-    name: "useClientFields", // Adjust the field name as needed
-  });
+  const handleFormChange = (event: ChangeEvent<HTMLInputElement>, sectionIndex: number, subSectionIndex: number) => {
+    const updatedSections = [...formSections];
+    if (event.target.name === 'Day name') {
+      updatedSections[sectionIndex].dayname = event.target.value;
+    } else {
+      updatedSections[sectionIndex].subSections[subSectionIndex][event.target.name] = event.target.value;
+    }
+    setFormSections(updatedSections);
+  };
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    // Handle form submission logic here
+  const handleDetailsChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormDetails((prevDetails) => ({
+      ...prevDetails,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const addSection = () => {
+    setFormSections((prevSections) => [...prevSections, { dayname: '', subSections: [{ reps: '', sets: '', workoutname: '', url: '', comments: '', intensity: '', days: '' }] }]);
+  };
+
+  const addSubSection = (sectionIndex: number) => {
+    setFormSections((prevSections) => {
+      const updatedSections = [...prevSections];
+      updatedSections[sectionIndex].subSections.push({ reps: '', sets: '', workoutname: '', url: '', comments: '', intensity: '', days: '' });
+      return updatedSections;
+    });
+  };
+
+  const removeSection = (sectionIndex: number) => {
+    setFormSections((prevSections) => {
+      const updatedSections = [...prevSections];
+      updatedSections.splice(sectionIndex, 1);
+      return updatedSections;
+    });
+  };
+
+  const removeSubSection = (sectionIndex: number, subSectionIndex: number) => {
+    setFormSections((prevSections) => {
+      const updatedSections = [...prevSections];
+      updatedSections[sectionIndex].subSections.splice(subSectionIndex, 1);
+      return updatedSections;
+    });
+  };
+
+  const duplicateDay = (sectionIndex: number) => {
+    setFormSections((prevSections) => {
+      const duplicatedDay = { ...prevSections[sectionIndex] };
+      return [...prevSections, duplicatedDay];
+    });
+  };
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Assuming formDetails and formSections are defined
+
+    // Transforming the bigform structure
+    const transformedForm = {
+      "Days": formDetails.days,
+      "Levels": formDetails.levels,
+      "Concentration": formDetails.concentration,
+      "Goals": formDetails.goals,
+      "Name": formDetails.splitnamename,
+      "thumbnailURL": formDetails.thumbnailURL,
+    };
+
+    // Create dynamic sectionsections based on formSections
+    formSections.forEach((section, index) => {
+      const sectionName = `sectionsection${index + 1}`;
+      transformedForm[sectionName] = section.subSections.map(subSection => ({
+        "dayname": section.dayname,
+        "workouts": [{
+          "workoutname": subSection.workoutname,
+          "days": subSection.days,
+          "intensity": subSection.intensity,
+          "sets": subSection.sets,
+          "reps": subSection.reps,
+          "url": subSection.url,
+          "comments": subSection.comments
+        }]
+      }));
+    });
+
+    console.log('Transformed Form:', transformedForm);
+
+    try {
+      const res = await postDataToApi(transformedForm);
+      console.log('API Response:', res);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+
+    console.log('Form Sections:', formSections);
+    console.log('Form Details:', formDetails);
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
+    <div className="App"> 
+      <form onSubmit={submit}>
+        <input
+          name='splitnamename'
+          placeholder='Name'
+          onChange={handleDetailsChange}
+          value={formDetails.splitnamename}
+        />
+        <input
+          name='thumbnailURL'
+          placeholder='ThumbnailURL'
+          onChange={handleDetailsChange}
+          value={formDetails.thumbnailURL}
+        />
+        <input
+          name='days'
+          placeholder='1'
+          onChange={handleDetailsChange}
+          value={formDetails.days}
+        />
+        <input
+          name='levels'
+          placeholder='Levels'
+          onChange={handleDetailsChange}
+          value={formDetails.levels}
+        />
+        <input
+          name='goals'
+          placeholder='Goals'
+          onChange={handleDetailsChange}
+          value={formDetails.goals}
+        />
+          <input
+          name='conentration'
+          placeholder='conentration'
+          onChange={handleDetailsChange}
+          value={formDetails.conentration}
         />
 
-        {/* Render dynamic "use client" fields */}
-        {fields.map((field, index) => (
-          <FormField
-            key={field.id}
-            control={form.control}
-            name={`useClientFields[${index}].useClient`}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Use Client</FormLabel>
-                <FormControl>
-                  <Input placeholder="Use Client" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        {formSections.map((section, sectionIndex) => (
+          <div key={sectionIndex}>
+            <button onClick={() => addSubSection(sectionIndex)}>Add Workout</button>
+            <button onClick={() => removeSection(sectionIndex)}>Remove Day</button>
+            <button onClick={() => duplicateDay(sectionIndex)}>Duplicate Day</button>
+            <input
+              name='Day name'
+              placeholder='Day Name'
+              onChange={(event) => handleFormChange(event, sectionIndex, 0)}
+              value={formSections[sectionIndex].dayname}
+            />
+            
+            {section.subSections.map((subSection, subSectionIndex) => (
+              <div key={subSectionIndex}>
+                <button onClick={() => removeSubSection(sectionIndex, subSectionIndex)}>Remove Workout</button>
+                <input
+                  name='workoutname'
+                  placeholder='Workout Name'
+                  onChange={(event) => handleFormChange(event, sectionIndex, subSectionIndex)}
+                  value={subSection.workoutname}
+                />
+                <input
+                  name='reps'
+                  placeholder='Reps'
+                  onChange={(event) => handleFormChange(event, sectionIndex, subSectionIndex)}
+                  value={subSection.reps}
+                />
+                <input
+                  name='sets'
+                  placeholder='Sets'
+                  onChange={(event) => handleFormChange(event, sectionIndex, subSectionIndex)}
+                  value={subSection.sets}
+                />
+                <input
+                  name='url'
+                  placeholder='Video Url'
+                  onChange={(event) => handleFormChange(event, sectionIndex, subSectionIndex)}
+                  value={subSection.url}
+                />
+                 <input
+                  name='comments'
+                  placeholder='Comments'
+                  onChange={(event) => handleFormChange(event, sectionIndex, subSectionIndex)}
+                  value={subSection.comments}
+                />
+                 <input
+                  name='intensity'
+                  placeholder='Intensity'
+                  onChange={(event) => handleFormChange(event, sectionIndex, subSectionIndex)}
+                  value={subSection.intensity}
+                />
+                       <input
+                  name='days'
+                  placeholder='days'
+                  onChange={(event) => handleFormChange(event, sectionIndex, subSectionIndex)}
+                  value={subSection.days}
+                />
+              </div>
+            ))}
+          </div>
         ))}
+        <button onClick={addSection}>Add Day</button>
+        <br />
+        <button type="button" onClick={submit}>Submit</button>
 
-        {/* Button to add a new "use client" field */}
-        <Button
-          type="button"
-          onClick={() => append({ useClient: "" })}
-        >
-          Add Use Client
-        </Button>
-
-        <Button type="submit">Submit</Button>
       </form>
-    </Form>
+    </div>
   );
 }
