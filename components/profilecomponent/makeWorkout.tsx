@@ -21,8 +21,9 @@ type Details = {
   days: string;
   levels: string;
   goals: string;
-  conentration: string;
+  concentration: string;
 };
+
 export function ProfileForm() {
   const [formSections, setFormSections] = useState<Section[]>([{ dayname: '', subSections: [{ reps: '', sets: '', workoutname: '', url: '', comments: '', intensity: '', days: '' }] }]);
   const [formDetails, setFormDetails] = useState<Details>({
@@ -35,7 +36,7 @@ export function ProfileForm() {
   });
 
   const handleFormChange = (event: ChangeEvent<HTMLInputElement>, sectionIndex: number, subSectionIndex: number) => {
-    const updatedSections = [...formSections];
+    const updatedSections:any = [...formSections];
     if (event.target.name === 'Day name') {
       updatedSections[sectionIndex].dayname = event.target.value;
     } else {
@@ -92,7 +93,7 @@ export function ProfileForm() {
     // Assuming formDetails and formSections are defined
 
     // Transforming the bigform structure
-    const transformedForm = {
+    const transformedForm:any = {
       "Days": formDetails.days,
       "Levels": formDetails.levels,
       "Concentration": formDetails.concentration,
@@ -165,10 +166,10 @@ export function ProfileForm() {
           value={formDetails.goals}
         />
           <input
-          name='conentration'
-          placeholder='conentration'
+          name='concentration'
+          placeholder='concentration'
           onChange={handleDetailsChange}
-          value={formDetails.conentration}
+          value={formDetails.concentration}
         />
 
         {formSections.map((section, sectionIndex) => (
