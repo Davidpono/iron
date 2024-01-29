@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rmdir /s /q node_modules && del package-lock.json",
+    "clean-styles": "rmdir /s /q path\\to\\your\\stylesheets",
+    "clean-config": "del tailwind.config.js",
+    "init-tailwind": "npx tailwindcss init",
+    "build-tailwind": "npx tailwindcss build -o .\\path\\to\\your\\output.css"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -14,6 +19,7 @@
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.25.0",
     "axios": "^1.6.5",
@@ -26,22 +32,24 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
+    "react-icons": "^5.0.1",
+    "react-player": "^2.14.1",
     "sanity": "^3.25.0",
     "shards-ui": "^3.0.0",
     "styled-components": "^6.1.8",
     "tailwind-merge": "^2.2.0",
+    "tailwindcss": "^3.4.1",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "^18.2.48",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "postcss": "^8",
-    "tailwindcss": "^3",
     "typescript": "^5"
   }
 }

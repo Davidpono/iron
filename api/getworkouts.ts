@@ -1,6 +1,6 @@
 import { AllWorkouts } from "@/types";
 
-export async function fetchDataWorkouts(): Promise<AllWorkouts> {
+export async function fetchDataWorkouts(params:any): Promise<AllWorkouts> {
   const baseUrl = 'https://discoveri.azurewebsites.net/api/workouts/';
   const queryParams = {
     Days: '5',
@@ -8,9 +8,10 @@ export async function fetchDataWorkouts(): Promise<AllWorkouts> {
     Concentration: 'Bodybuilding',
     Goals: 'Legs'
   };
-
+  console.log("queary",queryParams)
+  console.log("params",params)
   // Constructing the full URL
-  const fullUrl = baseUrl + '?' + new URLSearchParams(queryParams).toString();
+  const fullUrl = baseUrl + '?' + new URLSearchParams(params).toString();
 
   try {
     const response = await fetch(fullUrl);

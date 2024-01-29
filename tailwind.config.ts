@@ -72,9 +72,17 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      borderWidth: {
+        'border': '1px', // Add your custom border width if needed
+        'border-border': '2px', // Adjust as needed
+
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config
+  plugins: [
+    require("tailwindcss-animate")
 
+  
+  ],
+} satisfies Config
 export default config

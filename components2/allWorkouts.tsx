@@ -2,10 +2,17 @@ import { fetchDataWorkouts } from "@/api/getworkouts";
 import { AllWorkouts } from "@/types";
 import Image from 'next/image';
 import Link from "next/link";
-export default async function ShowallWorkouts() {
-
+interface params {
+  [x: string]: any;
+  Days: string;
+  Levels: string;
+  Concentration: string;
+  Goals: string;
+}
+export default async function ShowallWorkouts(params:any) {
+    console.log(params.params)
     try {
-        const response: AllWorkouts | undefined = await fetchDataWorkouts();
+        const response: AllWorkouts | undefined = await fetchDataWorkouts(params.params);
         console.log(response)
         if (response && response.Workouts.length > 0) {
           const Workouts: AllWorkouts = response;

@@ -25,6 +25,9 @@ type Details = {
 };
 
 export function ProfileForm() {
+  useEffect(() => {
+    console.log("Component rendered");
+  }, []);
   const inputclassName =
     "text-black font-bold py-2 px-4 rounded mb-2 border-2 border-black";
   const [formSections, setFormSections] = useState<Section[]>([
@@ -101,7 +104,7 @@ export function ProfileForm() {
   const addSubSection = (sectionIndex: number) => {
     setFormSections((prevSections) => {
       const updatedSections = [...prevSections];
-      updatedSections[sectionIndex].subSections.push({
+      const newSubSection = {
         reps: "",
         sets: "",
         workoutname: "",
@@ -109,10 +112,14 @@ export function ProfileForm() {
         comments: "",
         intensity: "",
         days: "",
-      });
+      };
+      updatedSections[sectionIndex].subSections.push(newSubSection);
+  
       return updatedSections;
     });
   };
+  
+ 
 
   const removeSection = (sectionIndex: number) => {
     setFormSections((prevSections) => {
@@ -137,7 +144,7 @@ export function ProfileForm() {
     });
   };
 
-  const submit = async (e) => {
+  const submit = async (e:any) => {
     e.preventDefault();
     // Assuming formDetails and formSections are defined
 
@@ -248,7 +255,7 @@ export function ProfileForm() {
             <select
               placeholder="Full Body"
               className="text-black font-bold text-sm py-2 px-4 rounded mb-2 border-2 border-black"
-              name="intensity"
+              name="concentration"
               onChange={handleDetailsChange}
               value={formDetails.concentration}
             >
@@ -283,6 +290,8 @@ export function ProfileForm() {
                   className="bg-green-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2"
                   type="button"
                   onClick={() => addSubSection(sectionIndex)}
+
+
                 >
                   Add Workout
                 </button>
@@ -375,7 +384,7 @@ export function ProfileForm() {
 
 
                     <select
-                      placeholder="50%"
+                    
                       className="text-black font-bold text-sm py-2 px-4 rounded mb-2 border-2 border-black"
                       name="intensity"
                       onChange={(event) =>
