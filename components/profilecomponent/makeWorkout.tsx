@@ -56,7 +56,7 @@ export function ProfileForm() {
   });
 
   const handleFormChange = (
-    event: ChangeEvent<HTMLInputElement>,
+    event: any,
     sectionIndex: number,
     subSectionIndex: number
   ) => {
@@ -73,7 +73,7 @@ export function ProfileForm() {
   };
   
 
-  const handleDetailsChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleDetailsChange = (event: any) => {
     setFormDetails((prevDetails) => ({
       ...prevDetails,
       [event.target.name]: event.target.value,
@@ -223,7 +223,7 @@ export function ProfileForm() {
           </div>
           <div className="flex flex-col">
             <select
-              placeholder="Beginner"
+           
               className="text-black font-bold text-sm py-2 px-4 rounded mb-2 border-2 border-black"
               name="levels"
               onChange={handleDetailsChange}
@@ -238,7 +238,7 @@ export function ProfileForm() {
             <select
               className="text-black font-bold text-sm py-2 px-4 rounded mb-2 border-2 border-black"
               name="goals"
-              placeholder="General Fitness"
+             
               onChange={handleDetailsChange}
               value={formDetails.goals}
             >
@@ -253,7 +253,7 @@ export function ProfileForm() {
             </select>
 
             <select
-              placeholder="Full Body"
+              
               className="text-black font-bold text-sm py-2 px-4 rounded mb-2 border-2 border-black"
               name="concentration"
               onChange={handleDetailsChange}

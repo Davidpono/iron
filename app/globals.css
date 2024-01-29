@@ -170,3 +170,22 @@ nav{
    width: 100%;
   }
 }
+.hoverbutton-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #718096;
+
+  transition: transform 0.2s; /* Smooth transition for the scaling effect */
+  cursor: pointer; /* Change cursor to indicate clickable element */
+}
+
+.hoverbutton-div:hover {
+  transform: scale(1.1); /* Scale up on hover */
+}
+.genericbuttonspan {
+  display: block;
+  text-align: center; /* Horizontally center */
+  line-height: 1; /* Vertically center */
+  color: #f5f5f5; /* Blue color */
+}
