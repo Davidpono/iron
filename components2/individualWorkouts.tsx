@@ -16,7 +16,7 @@ export default async function ShowallWorkouts( id: any) {
           return (
             <>
             <div className="flex justify-center">
-      <div className="flex justify-center border border-black rounded-lg w-4/5" style={{ margin: '20px' }}>
+      <div className="flex justify-center border border-black rounded-lg w-4/5 whitebgdiv" style={{ margin: '20px' }}>
               {Workouts.Workouts.map((workout:any) => (
                 <div key={workout._id}>
 <div className="flex sm:flex-col flex-col lg:flex-row md:flex-col">
@@ -85,31 +85,38 @@ export default async function ShowallWorkouts( id: any) {
                         
                         
                         <>
-                        <div className="border border-black rounded-lg" >
+                        <div className="allworkoutscontainer" >
                      
-                        <div className="flex sm:flex-row">
-                        <div key={sectionKey}  className="flex flex-col lg:flex-row md:flex-row gap-2   w-1/2">
-                          {workout[sectionKey].map((section: any) => (
+                        <div >
+                        <div key={sectionKey} className="containerworkoutsinfo">
+  {workout[sectionKey].map((section: any) => (
 
-                            <div key={section.dayname} className="w-full lg:w-1/4 lg:h-1/5 justify-between">
+                            <div key={section.dayname} className="wholeworkoutcard">
                               <div className="flex flex-col mb-4 gap-4 justify-between m-5">
-                                <div className="flex flex-col m-5">
-                                  <div>
-                                    <span className="text-4xl" style={{ fontSize: '16px' }}>Workout Name: {section.workouts[0].workoutname}</span>
+                                <div className="flex flex-col m-5" >
+                                  <div className="workoutcard">
+                                  <div className="flex items-center flex flex-col"> 
+                                  <br/>
+                                    <span className="workoutcardheadertext"> {section.workouts[0].workoutname}</span>
+                                    <br/>
+                                    <span className="workoutcardheadertext"> {section.dayname}</span>
                                   </div>
                                   
-                                  <div>
+                                
+                                  </div>
 
-                                    <span>  Day Name: {section.dayname}</span>
+
+                                  <div>
+                                  <br/>
+                                    <span className="internalnonheaderworkouttext">  Sets: {section.workouts[0].sets} </span>
                                   </div>
                                   <div>
-                                    <span>  sets: {section.workouts[0].sets}</span>
+                                  <br/>
+                                    <span className="internalnonheaderworkouttext">  Reps: {section.workouts[0].reps}</span>
                                   </div>
                                   <div>
-                                    <span>  reps: {section.workouts[0].reps}</span>
-                                  </div>
-                                  <div>
-                                    <span>  intensity: {section.workouts[0].intensity} of 1 Rep Max</span>
+                                  <br/>
+                                    <span className="internalnonheaderworkouttext">  Intensity: {section.workouts[0].intensity} of 1 Rep Max</span>
                                   </div>
                                 </div>
                                 <div className="flex flex-col">
@@ -120,10 +127,10 @@ export default async function ShowallWorkouts( id: any) {
                                    }
                                   </div>
                                   <div>
-                                    <span>  comments: {section.comments}</span>
+                                    <span className="internalnonheaderworkouttext">  Comments: {section.comments}</span>
                                   </div>
-                                  <div className="w-2 h-4 bg-black">
-    <Link href={section.workouts[0].url} target="_blank" rel="noopener noreferrer">
+                                  <div className="flex justify-center">
+    <Link href={section.workouts[0].url} target="_blank" rel="noopener noreferrer" className="flex justify-center">
     <div    className="rounded-lg hoverbutton-div">
     <span className="genericbuttonspan">
     <strong>Click to See an Example</strong>

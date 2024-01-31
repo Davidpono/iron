@@ -103,9 +103,9 @@ export function SearchWorkout() {
     <div className=" flex justify-center">
       <form
         onSubmit={submit}
-        className="lg:w-2/5 w-4/5   border-2 border-black rounded-lg p-4"
+        className="lg:w-2/5 w-4/5   border-2 border-black rounded-lg p-4 whitebgdiv"
       >
-        <h1 className="text-3xl font-bold mb-4">create workout.</h1>
+        <h1 className="text-3xl font-bold mb-4">Search workout.</h1>
         <div className=" flex lg:flex-row  flex-col justify-center gap-4">
           <div className="flex flex-col ">
          

@@ -91,13 +91,22 @@ header{
   position: sticky;
   z-index: 30;
   top: 0;
+  justify-items: center;
+  justify-content: center;
+  
 }
-nav{
+nav {
   display: flex;
   padding: 16px;
   justify-content: space-between;
   align-items: center;
-  background-color: #f1f1f1;
+  background-color: #000000;
+  height: 60px;
+  width: 80%;
+  margin-left: auto; /* Set left margin to auto */
+  margin-right: auto; /* Set right margin to auto */
+  border-radius: 0.6rem; 
+
 }
 .nav__menu-bar{
   display: flex;
@@ -108,7 +117,7 @@ nav{
 .nav__menu-bar div{
   width: 40px;
   height: 4px;
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   border-radius: 2px;
 }
 .nav__menu-list{
@@ -116,13 +125,15 @@ nav{
   flex-direction: column;
   position: fixed;
   top: 60px;
+  height: 60px;
   width: 288px;
   row-gap: 24px;
   right: -288px;
   padding: 24px 16px;
   transition: all 0.2s;
   min-height: calc(100vh - 60px);
-  background-color: #f1f1f1;
+  background-color: #000000;
+  color: #ffffff;
 }
 .nav__menu-list.active{
   right: 0;
@@ -131,6 +142,7 @@ nav{
   font-size: 18px; 
   position: relative;
   transition: all 0.2s;
+ 
 }
 
 .nav__link:hover{
@@ -162,7 +174,7 @@ nav{
     height: 6px;
     bottom: -16px;
     left: 0;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     transition: all 0.2s;
   }
   
@@ -175,7 +187,8 @@ nav{
   justify-content: center;
   align-items: center;
   background-color: #718096;
-
+  width: 60%;
+  height: 5vh;
   transition: transform 0.2s; /* Smooth transition for the scaling effect */
   cursor: pointer; /* Change cursor to indicate clickable element */
 }
@@ -188,4 +201,95 @@ nav{
   text-align: center; /* Horizontally center */
   line-height: 1; /* Vertically center */
   color: #f5f5f5; /* Blue color */
+}
+.containerworkoutsinfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(0, 1fr)); /* Automatically create columns */
+  gap: 10px; /* Adjust the gap between items */
+  justify-items: center;
+  background-color: #414141;
+  border-radius: 0.8rem;
+}
+
+.containerworkoutsinfo > div {
+  grid-column: span 1; /* Each item spans one column by default */
+}
+
+@media (min-width: 770px) {
+  .containerworkoutsinfo {
+    grid-template-columns: repeat(3, 1fr); /* Three columns per row on larger screens */
+  }
+}
+
+@media (max-width: 769px) {
+  .containerworkoutsinfo {
+    grid-template-columns: auto; /* Set to auto to create a single column layout */
+  }
+}
+.workoutcard {
+ background-color: #252525;
+ align-items: center;
+ height: 22vh;
+ border-radius: 0.5rem; 
+}
+.workoutcardheadertext{
+  font-size: 1.25rem; /* Equivalent to text-4xl */
+  font-weight: 600; /* Example font weight */
+  text-align: center;
+  width: w-full;
+  color: white; /* Example text color */
+}
+.wholeworkoutcard {
+  width: 90%; /* Full width on all screens */
+  background-color: #AF0404;
+  border-radius: 0.375rem; /* Equivalent to rounded-lg in Tailwind */
+  margin: 1rem;
+  padding: 1%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 5);
+}
+
+@media (min-width: 1024px) { /* Adjust the breakpoint as needed */
+  .wholeworkoutcard {
+    width: 70%; /* Full width on large screens */
+    height: 60vh; /* One-fifth of the viewport height on large screens */
+    justify-content: space-between; /* Justify content with space between */
+  }
+}
+.allworkoutscontainer {
+  
+  margin: 1rem; /* Equivalent to m-4 in Tailwind */
+   /* Equivalent to border border-black in Tailwind */
+  border-radius: 0.375rem; /* Equivalent to rounded-lg in Tailwind */
+  align-items: center; /* Equivalent to items-center in Tailwind */
+
+}
+
+@media (min-width: 1024px) {
+ .allworkoutscontainer {
+
+  border-radius: 0.375rem; /* Equivalent to rounded-lg in Tailwind */
+  align-items: center; /* Equivalent to items-center in Tailwind */
+  justify-content: center;
+}
+  
+}
+.internalnonheaderworkouttext {
+  
+ color: #f1f1f1;
+ font-weight: bold;
+}
+.whitebgdiv {
+  background-color: white;
+  padding: 1%;
+}
+.graydiv {
+  background-color: #414141;
+ 
+}
+.mainlayout {
+  background: linear-gradient(135deg, hsla(0, 0%, 25%, 1) 10%, hsla(0, 100%, 50%, 1) 33%, hsla(0, 96%, 35%, 1) 60%, hsla(0, 0%, 25%, 1) 89%), #000;
+}
+
+.mainlayout header {
+  margin: 0 auto; /* Center the div horizontally */
 }
