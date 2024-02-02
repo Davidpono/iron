@@ -293,3 +293,19 @@ nav {
 .mainlayout header {
   margin: 0 auto; /* Center the div horizontally */
 }
+.userprofilemaindiv{
+  background-color: #f1f1f1;
+  width: 80%;
+  height: 100%;
+  padding: 1%;
+  margin: 1%;
+}
+.profilecarouseldiv2 {
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  border: 1px solid #000; /* Border style with 1px width and black color */
+  border-radius: 1px;
+  width: 30%;
+height: 40vh;
+}

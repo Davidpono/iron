@@ -6,7 +6,7 @@ import NavItem from "./navItem";
 const MENU_LIST = [
   { text: "Home", href: "/" },
   { text: "Login", href: "/login" },
-  { text: "Register", href: "/" },
+  { text: "Register", href: "/register" },
   { text: "Profile", href: "/profile" },
   { text: "Logout", href: "/logout" },
   { text: "Search Programs", href: "/searchworkout" },

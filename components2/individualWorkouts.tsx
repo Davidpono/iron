@@ -3,6 +3,7 @@ import { AllWorkouts } from "@/types";
 import Image from 'next/image';
 import Link from "next/link";
 import React from 'react'
+import SaveWorkoutBut from "./buttonAddWorkout";
 
 export default async function ShowallWorkouts( id: any) {
         console.log("individual component",id)
@@ -13,6 +14,8 @@ export default async function ShowallWorkouts( id: any) {
           const Workouts: AllWorkouts = response;
           console.log(Workouts.Workouts[0].sectionsection1[0].workouts[0].sets)
           console.log(Workouts.Workouts[0])
+          
+ 
           return (
             <>
             <div className="flex justify-center">
@@ -21,6 +24,8 @@ export default async function ShowallWorkouts( id: any) {
                 <div key={workout._id}>
 <div className="flex sm:flex-col flex-col lg:flex-row md:flex-col">
   <div>
+    
+   <SaveWorkoutBut id={id} name={workout.Name}/>
                   <h1>{workout.Name} Program</h1>
                   <br/>
                   <p>{workout.Days} Day Program</p>
@@ -130,15 +135,15 @@ export default async function ShowallWorkouts( id: any) {
                                     <span className="internalnonheaderworkouttext">  Comments: {section.comments}</span>
                                   </div>
                                   <div className="flex justify-center">
-    <Link href={section.workouts[0].url} target="_blank" rel="noopener noreferrer" className="flex justify-center">
-    <div    className="rounded-lg hoverbutton-div">
-    <span className="genericbuttonspan">
-    <strong>Click to See an Example</strong>
-</span>
-      </div>
+                                  <Link href={section.workouts[0].url} target="_blank" rel="noopener noreferrer" className="flex justify-center">
+                                  <div    className="rounded-lg hoverbutton-div">
+                                  <span className="genericbuttonspan">
+                                  <strong>Click to See an Example</strong>
+                              </span>
+                                    </div>
 
-    </Link>
-</div>
+                                  </Link>
+                              </div>
 
 
 
@@ -165,6 +170,7 @@ export default async function ShowallWorkouts( id: any) {
 
 
 </div>
+
 </div>
 
             </>

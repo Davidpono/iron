@@ -3,11 +3,14 @@
 import { register } from "@/api/registeruser";
 import { useState } from "react";
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 import Link from "next/link";
+import { login } from "@/api/loginuser";
 const url = 'https://discoveri.azurewebsites.net/api/register/';
 
 const Login = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,28 +28,18 @@ const Login = () => {
     e.preventDefault();
   
     try {
-      // Axios POST request
-      /*const axiosRes = await axios.post(url, {
-        email: 'vercenyour_email@example.com',
-        password: 'your_password test vercen8',
-        username: 'your_username vercen88',
-      });
-  
-      console.log('Axios response:', axiosRes.data);
-      */
-      // Pass formData to the register function
+      
       const registrationData = {
         email: formData.email,
-        username: formData.name,
-        password: formData.password, // Add password input to your form
-        // Assuming "name" corresponds to the username
+        password: formData.password,
       };
   
       // Assuming register() is an asynchronous function
-      const registerRes = await register(registrationData);
-      console.log('Registration response:', registerRes);
+      const registerRes = await login(registrationData);
+      console.log('Registration response:', registerRes.user_id);
   
       console.log('Form submitted:', formData);
+      router.push(`/profile`);
     } catch (error) {
       console.error('Error during form submission:', error);
     }
