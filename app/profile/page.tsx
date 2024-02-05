@@ -3,10 +3,13 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getUser } from "@/api/getuserprofile";
 import { UserProfile } from "@/components/profile/userProfile";
+import { fetchindividualWorkout } from '@/api/getindividualworkout';
+import { AllWorkouts } from '@/types';
 
 const IndividualWorkout = ({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) => {
   const router = useRouter();
   const [userProfile, setUserProfile] = useState(null);
+  const [activeworkout, setActiveworkout] = useState(null);
 
 
   useEffect(() => {
@@ -21,7 +24,12 @@ const IndividualWorkout = ({ searchParams }: { searchParams: { [key: string]: st
     const fetchUserProfile = async () => {
       try {
         const res = await getUser(token);
+        const res2: AllWorkouts | undefined = await fetchindividualWorkout(res.user.activeworkout);
+        const Workouts: AllWorkouts = res2;
+        console.log(Workouts.Workouts[0])
         setUserProfile(res);
+       setActiveworkout(Workouts.Workouts[0]);
+      console.log("profile pages",res2)
       } catch (error) {
         console.error('Error fetching user profile:', error);
       }
@@ -36,7 +44,7 @@ const IndividualWorkout = ({ searchParams }: { searchParams: { [key: string]: st
 
   return (
     <>
-      <UserProfile userprofile={userProfile} />
+      <UserProfile userprofile={userProfile} workouts={activeworkout} />
     </>
   );
 };

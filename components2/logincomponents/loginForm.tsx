@@ -91,11 +91,15 @@ const Register = () => {
         <input type="password" name="password2" value={formData.password} onChange={handleChange} placeholder="Confirm Password" className="border-0 border-transparent rounded-lg h-10 w-full" />
    </div>
      <div className="flex justify-center">
+     <div className="hoverbutton-div ">
       <button type="submit" className="bg-black hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">Submit</button>
+      </div>
       </div>
       <h1 className="text-md  mb-4 ">Already have an account? 
       <Link
-       href="/login"> <span className="text-md font-bold mb-4 hover:underline hover:text-blue-500">Login</span></Link>
+       href="/login"> 
+       
+       <span className="text-md font-bold mb-4 hover:underline hover:text-blue-500">Login</span></Link>
       
       </h1>
       </div>

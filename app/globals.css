@@ -187,8 +187,10 @@ nav {
   justify-content: center;
   align-items: center;
   background-color: #718096;
-  width: 60%;
+  padding: 1%;
+  width: 80%;
   height: 5vh;
+  border-radius: 0.8rem;
   transition: transform 0.2s; /* Smooth transition for the scaling effect */
   cursor: pointer; /* Change cursor to indicate clickable element */
 }
@@ -308,4 +310,34 @@ nav {
   border-radius: 1px;
   width: 30%;
 height: 40vh;
+}
+.datescal{
+  background: white;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.375rem;
+}
+.monthcontainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* Ensure 7 columns for each day of the week */
+  grid-auto-rows: 1fr;
+  gap: 10px;
+  overflow: hidden; /* Change 'auto' to 'hidden' to hide the scrollbar */
+  background-color: #414141;
+  margin: 2%;
+  padding: 2%;
+  width: calc(90%);
+  border-radius: 0.375rem;
+}
+
+.monthcontainer > div {
+  background: white;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.375rem;
+  overflow: hidden; /* Ensure content inside the grid item doesn't overflow */
+}
+
+.slide {
+  width: 100%; /* Ensure the slide takes the full width of the container */
 }
