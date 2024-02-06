@@ -26,21 +26,21 @@ export function UserProfile(userprofile: any, activeworkout:AllWorkouts) {
           <div className="flex justify-center items-center h-2/3">
             <span className="flex justify-center text-center">Welcome {userprofile.userprofile.user.username}</span>
           </div>
-          <div className="flex flex-col">
-        <div className="flex flex-row justify-between">
+          <div className="flex flex-col gap-10">
+        <div className="flex lg:flex-row flex-col gap-4 justify-between">
         <div>
         <UserProfileTabs userprofile={userprofile}/>
         </div>
-        <div style={{ width: '800px', height: '850px', margin: '0 auto' }}>
+        <div className="calmaindiv" >
   <Calendar data={activeworkout1}/>
 </div>
         </div>
-        <div className="flex flex-row">
+        <div className="flex lg:flex-row flex-col">
 
         <div className="flex w-1/3">
 <Activeworkout data={activeworkout1}/>
         </div>
-<div className="flex flex justify-center content-center w-2/3">
+<div className="flex flex justify-center content-center lg:w-2/3">
           <Workoutcouressel workout={workouts}/>
           </div>
           </div>

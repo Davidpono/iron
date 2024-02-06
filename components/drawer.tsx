@@ -56,8 +56,25 @@ const data = [
   },
 ]
 
-export function DrawerDemo(data:any, data1:any) {
-    console.log("from drawer",data)
+export function DrawerDemo(data:any) {
+  console.log("from drawer",data)
+  let sectionbtouse;
+  if (data.data1 === "Monday") {
+    sectionbtouse = data.sectionsection.sectionsection1;
+} else if (data.data1 === "Tuesday") {
+    sectionbtouse = data.sectionsection.sectionsection2;
+} else if (data.data1 === "Wednesday") {
+    sectionbtouse = data.sectionsection.sectionsection3;
+} else if (data.data1 === "Thursday") {
+    sectionbtouse = data.sectionsection.sectionsection4;
+} else if (data.data1 === "Friday") {
+    sectionbtouse = data.sectionsection.sectionsection5;
+}else{
+  sectionbtouse= "no workout"
+}
+// Add more conditions for other days as needed
+
+console.log("Selected section:", sectionbtouse[0]);
   const [goal, setGoal] = React.useState(350)
 
   function onClick(adjustment: number) {
@@ -67,7 +84,7 @@ export function DrawerDemo(data:any, data1:any) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button className="w-full h-full bg-background-white text-color-black">{data.data} <br/> {data.data1}</Button>
+        <Button className="w-full h-full bg-background-white text-color-black hover:scale-110">{data.data} <br/> {data.data1} <br/> {sectionbtouse[0].dayname}</Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">

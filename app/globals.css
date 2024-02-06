@@ -302,6 +302,21 @@ nav {
   padding: 1%;
   margin: 1%;
 }
+.calmaindiv{
+  width: '900px';
+  height: '900px'; 
+  margin: '0 auto';
+}
+@media (min-width: 415px) {
+  .userprofilemaindiv {
+    width: 95%;
+  }
+  .calmaindiv{
+    width: '200px';
+
+    margin: '0 auto';
+  }
+}
 .profilecarouseldiv2 {
   display: flex; /* Enable flexbox */
   align-items: center; /* Center items vertically */
