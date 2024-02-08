@@ -26,10 +26,10 @@ const IndividualWorkout = ({ searchParams }: { searchParams: { [key: string]: st
         const res = await getUser(token);
         const res2: AllWorkouts | undefined = await fetchindividualWorkout(res.user.activeworkout);
         const Workouts: AllWorkouts = res2;
-        console.log(Workouts.Workouts[0])
+
         setUserProfile(res);
        setActiveworkout(Workouts.Workouts[0]);
-      console.log("profile pages",res2)
+
       } catch (error) {
         console.error('Error fetching user profile:', error);
       }

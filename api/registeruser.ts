@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export async function register(data: any) {
-  console.log(data);
+
   const url = 'https://discoveri.azurewebsites.net/api/register/';
   const headers = {
     'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export async function register(data: any) {
       // Registration successful, check if inserted_id is present in the response
       const insertedId = response.data.inserted_id;
       if (insertedId) {
-        console.log('Inserted document ID:', insertedId);
+;
         return insertedId;
       }
 
@@ -36,8 +36,7 @@ export async function register(data: any) {
     } catch (error:any) {
       // Handle connection errors, timeouts, or other request-related issues
       console.error(`An error occurred during registration request (Attempt ${attempt}):`, error);
-      console.log('Response content:', error.response.data);
-      console.log('Response headers:', error.response.headers);
+
 
       // Sleep before retrying
       await new Promise(resolve => setTimeout(resolve, retryDelay));

@@ -18,9 +18,13 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { updateuserrestdays } from "@/api/updateuserrestdays";
+ 
 export function UserProfileTabs(userprofile:any) {
   // Destructure userprofile props to access user data
   const { username, age, email, firstname, lastname } = userprofile.userprofile.userprofile.user;
+  const { restmonday, resttuesday, restwednesday, restthursday, restfriday, restsaturday, restsunday } = { restmonday: '', resttuesday: '', restwednesday: '', restthursday: '', restfriday: '', restsaturday: '', restsunday: '' };
 
   // State variables for managing form data
   const [updatedUsername, setUpdatedUsername] = useState(username);
@@ -28,7 +32,14 @@ export function UserProfileTabs(userprofile:any) {
   const [updatedAge, setUpdatedAge] = useState(age);
   const [updatedFirstname, setUpdatedFirstname] = useState(firstname); // Updated state variable name
   const [updatedLastname, setUpdatedLastname] = useState(lastname); // Updated state variable name
-  
+  const [restdayMonday, setrestdatMonday] = useState(restmonday); // Updated state variable name
+  const [restdayTuesday, setrestdatTuesday] = useState(resttuesday); // Updated state variable name
+  const [restdayWednesday, setrestdatWednesday] = useState(restwednesday); // Updated state variable name
+  const [restdayThursday, setrestdatThursday] = useState(restthursday); // Updated state variable name
+  const [restdayFriday, setrestdatFriday] = useState(restfriday); // Updated state variable name
+  const [restdaySaturday, setrestdatSaturday] = useState(restsaturday); // Updated state variable name
+  const [restdaySunday, setrestdatSunday] = useState(restsunday); // Updated state variable name
+
   const token = localStorage.getItem('token');
 
   // Function to handle updating user profile
@@ -48,12 +59,31 @@ export function UserProfileTabs(userprofile:any) {
       console.error('Failed to update user profile:', error.message);
     }
   };
+  const handleUpdaterestdays = async () => {
+    try {
+      // Call updateUser function with updated data
+      console.log('restdaylist', restdayMonday, restdayTuesday, restdayWednesday, restdayThursday, restdayFriday, restdaySaturday, restdaySunday)
+      await updateuserrestdays({
+        user_id: token,
+        restmonday: restdayMonday,
+        resttuesday: restdayTuesday,
+        restwednesday: restdayWednesday,
+        restthursday: restdayThursday,
+        restfriday: restdayFriday,
+        restsaturday: restdaySaturday,
+        restsunday: restdaySunday
+      });
+      console.log('User profile updated successfully');
+    } catch (error:any) {
+      console.error('Failed to update user profile:', error.message);
+    }
+  };
 
   return (
-    <Tabs defaultValue="account" className="w-[200px]">
+    <Tabs defaultValue="account" className="w-full">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
+        <TabsTrigger value="password">Workout</TabsTrigger>
       </TabsList>
       <TabsContent value="account">
         <Card>
@@ -63,7 +93,7 @@ export function UserProfileTabs(userprofile:any) {
               Make changes to your account here. Click save when you're done.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
+          <CardContent className="space-y-2 w-full">
             <div className="space-y-1">
               <Label htmlFor="name">Username</Label>
               <Input id="username" value={updatedUsername} onChange={(e) => setUpdatedUsername(e.target.value)} />
@@ -90,26 +120,114 @@ export function UserProfileTabs(userprofile:any) {
           </CardFooter>
         </Card>
       </TabsContent>
-      <TabsContent value="password">
-        <Card>
+      <TabsContent value="password" className="w-full">
+        <Card  className="w-full">
           <CardHeader>
-            <CardTitle>Password</CardTitle>
+            <CardTitle>Workout</CardTitle>
             <CardDescription>
-              Change your password here. After saving, you'll be logged out.
+              Select Your Rest Days
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="current">Current password</Label>
-              <Input id="current" type="password" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="new">New password</Label>
-              <Input id="new" type="password" />
-            </div>
+          <CardContent className="space-y-2 w-full">
+
+
+          <RadioGroup className="w-full">
+  <div className="flex items-center space-x-2">
+    <input
+      type="radio"
+      id="monday"
+      value="Monday"
+      checked={restdayMonday === 'Monday'}
+      onChange={(e) => setrestdatMonday(e.target.value)}
+    />
+    <label htmlFor="monday">Monday</label>
+  </div>
+</RadioGroup>
+<RadioGroup>
+  <div className="flex items-center space-x-2">
+    <input
+      type="radio"
+      id="tuesday"
+      value="Tuesday"
+      checked={restdayTuesday === 'Tuesday'}
+      onChange={(e) => setrestdatTuesday(e.target.value)}
+    />
+    <label htmlFor="tuesday">Tuesday</label>
+  </div>
+</RadioGroup>
+
+<RadioGroup>
+  <div className="flex items-center space-x-2">
+    <input
+      type="radio"
+      id="wednesday"
+      value="Wednesday"
+      checked={restdayWednesday === 'Wednesday'}
+      onChange={(e) => setrestdatWednesday(e.target.value)}
+    />
+    <label htmlFor="wednesday">Wednesday</label>
+  </div>
+</RadioGroup>
+
+<RadioGroup>
+  <div className="flex items-center space-x-2">
+    <input
+      type="radio"
+      id="thursday"
+      value="Thursday"
+      checked={restdayThursday === 'Thursday'}
+      onChange={(e) => setrestdatThursday(e.target.value)}
+    />
+    <label htmlFor="thursday">Thursday</label>
+  </div>
+</RadioGroup>
+
+<RadioGroup>
+  <div className="flex items-center space-x-2">
+    <input
+      type="radio"
+      id="friday"
+      value="Friday"
+      checked={restdayFriday === 'Friday'}
+      onChange={(e) => setrestdatFriday(e.target.value)}
+    />
+    <label htmlFor="friday">Friday</label>
+  </div>
+</RadioGroup>
+
+<RadioGroup>
+  <div className="flex items-center space-x-2">
+    <input
+      type="radio"
+      id="saturday"
+      value="Saturday"
+      checked={restdaySaturday === 'Saturday'}
+      onChange={(e) => setrestdatSaturday(e.target.value)}
+    />
+    <label htmlFor="saturday">Saturday</label>
+  </div>
+</RadioGroup>
+
+<RadioGroup>
+  <div className="flex items-center space-x-2">
+    <input
+      type="radio"
+      id="sunday"
+      value="Sunday"
+      checked={restdaySunday === 'Sunday'}
+      onChange={(e) => setrestdatSunday(e.target.value)}
+    />
+    <label htmlFor="sunday">Sunday</label>
+  </div>
+</RadioGroup>
+
+
+
+
+         
           </CardContent>
           <CardFooter>
-            <Button>Save password</Button>
+            <Button onClick={handleUpdaterestdays}>Save preferences</Button>
           </CardFooter>
         </Card>
       </TabsContent>

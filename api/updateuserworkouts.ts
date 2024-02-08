@@ -10,7 +10,7 @@ export async function addUserWorkout(userId:any, workoutId:any, workoutName:any)
     console.log(requestData)
     try {
         const response = await axios.post('https://discoveri.azurewebsites.net/api/userworkouts/', requestData);
-        console.log('Response:', response.data);
+
         return response.data;
     } catch (error:any) {
         console.error('Error:', error.response.data);

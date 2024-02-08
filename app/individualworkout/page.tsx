@@ -13,8 +13,7 @@ import Image from 'next/image';
   }) {
     const id = searchParams['ref'] as string;
   console.log(id);
-  //const response = await fetchindividualWorkout();
-  //console.log("response",response);
+
       return (
         <>
 

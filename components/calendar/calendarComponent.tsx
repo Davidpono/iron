@@ -38,7 +38,7 @@ function SampleNextArrow(props:any) {
 
 export default function Calendar(data:any) {
 
-  console.log(data.data)
+  console.log("data.data from cal cop",data.data2.userprofile.user.restdaylist)
 
   const filteredSections = Object.entries(data.data)
   .filter(([key, value]) => key.startsWith('sectionsection') && value && (value as any[]).length > 0)
@@ -163,9 +163,7 @@ export default function Calendar(data:any) {
   return (
     <div className='' style={{ maxWidth: '1000px', maxHeight: '600px', margin: '0 auto' }}>
       <div className='flex justify-between content-center' >
-        <Button> update rest days </Button>
-        <Button> update teh day your split starts </Button>
-
+  
       </div>
 
       <div className='bg-black  rounded-sm' style={{width:'94%',height:'60px', position: "relative",
@@ -191,7 +189,7 @@ export default function Calendar(data:any) {
             </div>
             <div className='monthcontainer'>
               {month.days.map((day, dayIndex) => (
-                <div key={dayIndex} className=''>
+                <div key={dayIndex} className='hover-:scale-105'>
                   {/* Passing sectionsections data to DrawerDemo */}
                   <DrawerDemo 
                     data={day.date} 
@@ -206,6 +204,7 @@ export default function Calendar(data:any) {
                       day.day === 'Saturday' ? day.saturdayIndex :
                       day.day === 'Sunday' ? day.sundayIndex : undefined
                     }
+                    restdaylist={data.data2.userprofile.user.restdaylist}
                     />
                   <div className='calsizeofboxes'>
                     {Object.keys(day).map((key, index) => {

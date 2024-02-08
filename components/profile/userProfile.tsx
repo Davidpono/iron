@@ -23,8 +23,8 @@ export function UserProfile(userprofile: any, activeworkout:AllWorkouts) {
     <>
       <div className="flex justify-center">
         <div className="userprofilemaindiv">
-          <div className="flex justify-center items-center h-2/3">
-            <span className="flex justify-center text-center">Welcome {userprofile.userprofile.user.username}</span>
+          <div className="flex justify-center items-center bg-red-600 rounded-lg shadow-lg" style={{ height: "30%" }}>
+            <span className="flex justify-center text-center text-5xl font-bold">Welcome {userprofile.userprofile.user.username}</span>
           </div>
           <div className="flex flex-col gap-10">
         <div className="flex lg:flex-row flex-col gap-4 justify-between">
@@ -32,7 +32,7 @@ export function UserProfile(userprofile: any, activeworkout:AllWorkouts) {
         <UserProfileTabs userprofile={userprofile}/>
         </div>
         <div className="calmaindiv" >
-  <Calendar data={activeworkout1}/>
+  <Calendar data={activeworkout1} data2={userprofile}/>
 </div>
         </div>
         <div className="flex lg:flex-row flex-col">

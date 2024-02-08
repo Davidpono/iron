@@ -8,8 +8,7 @@ export async function fetchDataWorkouts(params:any): Promise<AllWorkouts> {
     Concentration: 'Bodybuilding',
     Goals: 'Legs'
   };
-  console.log("queary",queryParams)
-  console.log("params",params)
+
   // Constructing the full URL
   const fullUrl = baseUrl + '?' + new URLSearchParams(params).toString();
 

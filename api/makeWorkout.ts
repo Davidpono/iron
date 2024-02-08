@@ -12,8 +12,7 @@ export async function postDataToApi(data: any): Promise<string | undefined> {
 
     // Check if the response is successful
     if (response.status === 200) {
-      console.log('POST request successful');
-      console.log('Response:', response.data);
+
       return response.data;
     } else {
       console.error('POST request failed with status:', response.status);
@@ -22,8 +21,7 @@ export async function postDataToApi(data: any): Promise<string | undefined> {
   } catch (error: any) {
     // Handle connection errors, timeouts, or other request-related issues
     console.error('An error occurred during the POST request:', error.message);
-    console.log('Response content:', error.response?.data);
-    console.log('Response headers:', error.response?.headers);
+
 
     // Handle specific error status codes if needed
     if (error.response?.status === 401) {
