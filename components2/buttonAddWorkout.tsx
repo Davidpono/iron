@@ -13,9 +13,13 @@ export default function SaveWorkoutBut({ id, name }: { id: any, name: any }) {
 
     const addworkout = async () => {
         // Implement your logic to add the workout here
-        const res= await addUserWorkout(token, id.id, name)
-        console.log(token, id.id, name);
-        console.log(res)
+        if (!token) {
+            alert('Not Logged In');
+            }else{
+            const res= await addUserWorkout(token, id.id, name)
+            console.log(token, id.id, name);
+            console.log(res)
+        } 
     }
 
 

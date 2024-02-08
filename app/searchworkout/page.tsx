@@ -16,7 +16,9 @@ export default async function Home({
   const id = searchParams['ref'] as string;
       return (
         <>
+        <div className="formdiv">
     <SearchWorkout/>  
+    </div>
        </>
       );
     

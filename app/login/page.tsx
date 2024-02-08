@@ -9,7 +9,7 @@ const Home = async () => {
   //const res = await register();
   //console.log(res);
   return (
-    <div>
+    <div className="formdiv">
    
       <Login />
     </div>
