@@ -1,7 +1,8 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
 export async function postDataToApi(data: any): Promise<string | undefined> {
-  const apiUrl = 'https://discoveri.azurewebsites.net/api/workouts/'; // Replace with your API endpoint
+  const apiUrl1 = 'https://discoveri.azurewebsites.net/api/workouts/'; // Replace with your API endpoint
+  const apiUrl = 'https://discoverii-main.onrender.com/api/workouts/'; 
   const headers = {
     'Content-Type': 'application/json',
   };
