@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export async function register(data: any) {
 
-  const url = 'https://discoveri.azurewebsites.net/api/register/';
+  const url1 = 'https://discoveri.azurewebsites.net/api/register/';
+  const url = 'https://discoverii-main.onrender.com/api/register/';
   const headers = {
     'Content-Type': 'application/json',
   };
