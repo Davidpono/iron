@@ -2,7 +2,7 @@ import { AllWorkouts } from "@/types";
 
 export async function fetchDataWorkouts(params:any): Promise<AllWorkouts> {
   const baseUrl1 = 'https://discoveri.azurewebsites.net/api/workouts/';
-  const baseUrl = 'https://discoverii-main.onrender.com//api/workouts/';
+  const baseUrl = 'https://discoverii-main.onrender.com/api/workouts/';
   
   const queryParams = {
     Days: '5',
