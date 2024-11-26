@@ -1,5 +1,6 @@
 const axios = require('axios');
 
+//https://discoveri.azurewebsites.net/api
 // Function to make a POST request to the userworkouts endpoint
 export async function updateuserrestdays(  restdays:any) {
    
@@ -18,7 +19,7 @@ export async function updateuserrestdays(  restdays:any) {
     };
 
     try {
-        const response = await axios.post('https://discoveri.azurewebsites.net/api/updatebasic/', requestData);
+        const response = await axios.post('https://discoverii-main.onrender.com/api/updatebasic/', requestData);
    
         return response.data;
     } catch (error:any) {
