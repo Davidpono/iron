@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const url = 'https://discoveri.azurewebsites.net/api/login/';
+const url1 = 'https://discoveri.azurewebsites.net/api/login/';
+const url = 'https://discoverii-main.onrender.com/api/register/';
 
 export async function login(data:any) {
     
