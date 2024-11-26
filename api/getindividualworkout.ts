@@ -2,7 +2,8 @@ import { AllWorkouts } from "@/types";
 
 export async function fetchindividualWorkout(id:any): Promise<AllWorkouts> {
 
-  const baseUrl = 'https://discoveri.azurewebsites.net/api/workouts/';
+  const baseUrl1 = 'https://discoveri.azurewebsites.net/api/workouts/';
+  const baseUrl = 'https://discoverii-main.onrender.com/api/workouts/';
   const queryParams = {
 
     id: id.id
