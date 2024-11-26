@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const url = 'https://discoveri.azurewebsites.net/api/user/';
-
+const url1 = 'https://discoveri.azurewebsites.net/api/user/';
+const url = 'https://discoverii-main.onrender.com/api/user/';
 export async function getUser(userId:any) {
   try {
     const response = await axios.post(url, { user_id: userId });
